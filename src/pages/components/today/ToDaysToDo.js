@@ -1,25 +1,32 @@
 import AxiosConfig from "../../../utils/api-requests/AxiosConfig";
 import { Fragment, useContext, useEffect } from "react";
 import { RowCard, Message } from "../../../assets/styled-components/habitos/container-habits";
-import { CardToDo, Checked, InfoSequence, TextInfo, TitleToDo, Wrapper } from "../../../assets/styled-components/hoje/todays-todo";
+import { CardToDo, Checked, Container, InfoSequence, TextInfo, TitleToDo, Wrapper } from "../../../assets/styled-components/hoje/todays-todo";
 import UserContext from "../../../utils/use-contexts/UserContext";
 function ToDaysToDo({data}){
     const {token, completedTasks, setCompletedTasks, setNumTasks} = useContext(UserContext);
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: token
         }
     }
-    async function cheked(e){
+    async function checker(e){
         const idHabit = e.target.accessKey;
+        const titleOption = e.target.title;
+        const url = `/habits/${idHabit}/${titleOption}`;
         try{
-            //const request = await AxiosConfig.post(`/habits/${idHabit}/check`, {}, config);
-            const request = await AxiosConfig.post(`/habits/${idHabit}/uncheck`, {}, config);
-            setCompletedTasks(completedTasks-1);
-            console.log(request);
+            if(titleOption === 'check'){
+                setCompletedTasks(completedTasks-1);
+            }else{
+                setCompletedTasks(completedTasks+1);
+            }
+            const request = await AxiosConfig.post(url, {}, config);
+            console.log(request.statusText);
         }catch(e){
             console.log(e.message);
+            alert('Algum erro ocorreu. Tente novamente.');
         }
+        window.location.reload();
     }
     useEffect(() => {
         try{
@@ -39,7 +46,7 @@ function ToDaysToDo({data}){
     if(data.status < 400){
         if(data.data.length !== 0){
             return (
-                <Fragment>
+                <Container>
                     {data.data.map(item => 
                         <RowCard key={item.id}>
                             <CardToDo>
@@ -52,12 +59,15 @@ function ToDaysToDo({data}){
                                         : <TextInfo>Seu recorde: {item.highestSequence} dias</TextInfo> }
                                     </InfoSequence>
                                 </Wrapper>
-                                <Checked onClick={cheked} isDone={item.done} accessKey={item.id}>
-                                    <ion-icon name="checkmark-outline"></ion-icon></Checked>
+                                {item.done 
+                                ? <Checked onClick={checker} isDone={item.done} accessKey={item.id} 
+                                title='uncheck'><ion-icon name="checkmark-outline"></ion-icon></Checked>
+                                : <Checked onClick={checker} isDone={item.done} accessKey={item.id} 
+                                title='check'><ion-icon name="checkmark-outline"></ion-icon></Checked>}
                             </CardToDo>
                         </RowCard>
                     )}
-                </Fragment>
+                </Container>
             );
         }else{
             return (

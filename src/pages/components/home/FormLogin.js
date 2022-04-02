@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Inputs, SingleInput, ButtonForm, SignLogin } from '../../../assets/styled-components/home/StyledHome';
 import SignIn from '../../../utils/api-requests/Sign-in';
@@ -10,6 +10,15 @@ function FormLogin(){
     const [disabled, setDisabled] = useState(false);
     const {setToken} = useContext(UserContext);
     const navigate = useNavigate();
+    useEffect(() => {
+        try{
+            const localToken = JSON.parse(localStorage.getItem('headers'));
+            setToken(localToken.Authorization);
+            navigate('/hoje');
+        }catch(e){
+            console.log(e.message);
+        }
+    });
     async function login(e){
         e.preventDefault();
         setDisabled(true);
@@ -19,14 +28,17 @@ function FormLogin(){
         }
         const response = await SignIn(body);
         if(response.status < 400){
-            setToken(response.token);
+            setToken(`Bearer ${response.token}`);
             const headers = {
                 Authorization: `Bearer ${response.token}`,
-                image: response.image,
-                name: response.name
+                image: response.image
             };
             localStorage.setItem('headers', JSON.stringify(headers));
             navigate('/hoje');
+        }else{
+            setDisabled(false);
+            setEmail('');
+            setPassword('');
         }
     }
     return(

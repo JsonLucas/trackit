@@ -6,23 +6,28 @@ import ToDaysToDo from "./ToDaysToDo";
 function ToDaysCards(){
     const [loaded, setLoaded] = useState(false);
     const [todaysData, setData] = useState({});
-    const {token} = useContext(UserContext);
+    const {token, setToken} = useContext(UserContext);
+    const localToken = JSON.parse(localStorage.getItem('headers'));
+    useEffect(() => {
+        if(token === ''){
+            setToken(localToken.Authorization);
+        } 
+    });
     useEffect(async () => {
         const config = {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: localToken.Authorization
             }
         }
         try{
             const request = await AxiosConfig.get('/habits/today', config);
             setData(request);
-            setLoaded(true);
             console.log(request);
         }catch(error){
             console.log(error);
             setData(error);
-            setLoaded(true);
         }
+        setLoaded(true);
     }, []);
     return (
         <Fragment>

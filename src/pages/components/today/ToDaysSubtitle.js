@@ -20,7 +20,7 @@ function ToDaysSubtitle() {
         }
     });
     const {completedTasks, numTasks} = useContext(UserContext);
-    const percentage = Math.floor((completedTasks*100)/numTasks);
+    const percentage = Math.floor((completedTasks/numTasks)*100);
     return (
         <ToDaySubtitle>
             <MainSubtitle>{date}</MainSubtitle>

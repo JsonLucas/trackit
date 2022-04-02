@@ -7,9 +7,15 @@ import LoadedCards from './LoadedCards';
 function BodyHabits(){
     const [loaded, setLoaded] = useState(false);
     const [data, setData] = useState({});
-    const {token} = useContext(UserContext);
+    const {token, setToken} = useContext(UserContext);
+    const localToken = JSON.parse(localStorage.getItem('headers'));
     useEffect(() => {
-        GetHabits(`Bearer ${token}`, setLoaded, setData);
+        if(token === ''){
+            setToken(localToken.Authorization);
+        } 
+    });
+    useEffect(() => {
+        GetHabits(localToken.Authorization, setLoaded, setData);
     }, []);
     return(
         <Fragment>

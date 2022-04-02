@@ -27,7 +27,7 @@ function LoadedCards({data}){
         return(
             <RowCard>
                 <Message>
-                    <p>Fazer uma tela de erro aki</p>
+                    <p>Algum erro ocorreu, por favor, tente novamente.</p>
                 </Message>
             </RowCard>
         );

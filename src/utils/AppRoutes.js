@@ -12,7 +12,8 @@ function AppRoutes(){
     const [completedTasks, setCompletedTasks] = useState(0);
     const [numTasks, setNumTasks] = useState(0);
     return(
-        <UserContext.Provider value={{token, completedTasks, numTasks, setToken, setCompletedTasks, setNumTasks}}>
+        <UserContext.Provider value={{token, completedTasks, numTasks, 
+        setToken, setCompletedTasks, setNumTasks}}>
             <BrowserRouter>
                 <Routes>
                     <Route exact path='/' element={<Home />}></Route>

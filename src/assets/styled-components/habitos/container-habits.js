@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const ContainerHabits = styled.div`
     width: 100%;
+    padding-bottom: 115px;
 `;
 
 export const RowContainerCard = styled.div`

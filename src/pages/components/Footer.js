@@ -6,10 +6,6 @@ import * as Ft from '../../assets/styled-components/footer';
 import "react-circular-progressbar/dist/styles.css";
 function Footer(){
     const {completedTasks, numTasks} = useContext(UserContext);
-    let percentage;
-    useEffect(() => {
-        percentage = Math.floor((completedTasks*100)/numTasks);
-    })
     return (
         <Ft.Footer>
             <Ft.Container>
@@ -20,7 +16,7 @@ function Footer(){
                 </Link>
                 <Link to='/hoje'>
                     <Ft.CircularProgress>
-                        <CircularProgressbar value={percentage} text='Hoje' background={true} />
+                        <CircularProgressbar value={Math.floor((completedTasks/numTasks)*100)} text='Hoje' background={true} />
                     </Ft.CircularProgress>
                 </Link>
                 <Link to='/historico'>

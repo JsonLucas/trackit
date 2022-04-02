@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Container } from "../assets/styled-components/hoje/today-subtitle";
 import UserContext from "../utils/use-contexts/UserContext";
@@ -8,21 +8,27 @@ import ToDaysCards from "./components/today/ToDaysCards";
 import ToDaysSubtitle from "./components/today/ToDaysSubtitle";
 
 function ToDay(){
-    const {token} = useContext(UserContext);
+    const {token, setToken} = useContext(UserContext);
+    const localToken = JSON.parse(localStorage.getItem('headers'));
     const navigate = useNavigate();
-    if(token !== ''){
-        return (
-            <Fragment>
-                <Header />
-                <Container>
-                    <ToDaysSubtitle />
-                    <ToDaysCards />
-                </Container>
-                <Footer />
-            </Fragment>
-        );
-    }else{
-        return (<Fragment>{navigate('/')}</Fragment>);
-    }
+    useEffect(() => {
+        if(localToken.Authorization !== ''){
+            if(token === ''){
+                setToken(localToken.Authorization);
+            }
+        }else{
+            navigate('/');
+        }
+    });
+    return (
+        <Fragment>
+            <Header />
+            <Container>
+                <ToDaysSubtitle />
+                <ToDaysCards />
+            </Container>
+            <Footer />
+        </Fragment>
+    );
 }
 export default ToDay;

@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+export const Container = styled.div`
+    width: 100%;
+    padding-bottom: 115px;
+`;
+
 export const Wrapper = styled.div`
     box-sizing: border-box;
 `;
@@ -38,6 +43,7 @@ export const Checked = styled.div`
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5px;
+    cursor: pointer;
     ${props => props.isDone ? 'background-color: rgb(143, 197, 73);' 
     : 'background-color: rgba(0, 0, 0, 0.3);'}
     [name="checkmark-outline"]{
