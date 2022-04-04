@@ -31,7 +31,7 @@ function FormCadastro() {
                 setImage('');
             }
         }catch (e) {
-            console.log(e.response);
+            console.log(e.response.status);
             alert(`Usuário não cadastrado: ${e.response.statusText}`);
         }
         setEmail('');
@@ -62,7 +62,7 @@ function FormCadastro() {
                 <div className='btn-signup'>
                     <ButtonForm disabled={disabled}>
                         {!disabled && <p>Cadastrar</p>}
-                        {disabled && <ThreeDots color='#FFF' height='100' width='70' />}
+                        {disabled && <ThreeDots color='#FFFFFF' height='100%' width='70' />}
                     </ButtonForm>
                 </div>
             </form>

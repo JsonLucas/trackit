@@ -1,9 +1,8 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
 import UserContext from '../../utils/use-contexts/UserContext';
 import * as Ft from '../../assets/styled-components/footer';
-import "react-circular-progressbar/dist/styles.css";
 function Footer(){
     const {completedTasks, numTasks} = useContext(UserContext);
     return (
@@ -16,7 +15,10 @@ function Footer(){
                 </Link>
                 <Link to='/hoje'>
                     <Ft.CircularProgress>
-                        <CircularProgressbar value={Math.floor((completedTasks/numTasks)*100)} text='Hoje' background={true} />
+                        {numTasks > 0 
+                            ? <CircularProgressbar value={Math.floor((completedTasks/numTasks)*100)} text='Hoje' background={true} />
+                            : <CircularProgressbar value='0' text='Hoje' background={true} />
+                        }
                     </Ft.CircularProgress>
                 </Link>
                 <Link to='/historico'>

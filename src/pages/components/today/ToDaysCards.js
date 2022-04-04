@@ -22,7 +22,7 @@ function ToDaysCards(){
         try{
             const request = await AxiosConfig.get('/habits/today', config);
             setData(request);
-            console.log(request);
+            console.log(request.statusText);
         }catch(error){
             console.log(error);
             setData(error);

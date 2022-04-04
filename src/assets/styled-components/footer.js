@@ -36,22 +36,56 @@ export const BtnHabits = styled.div`
 export const CircularProgress = styled.div`
     position: absolute;
     bottom: 20px;
-    left: 39%;
-    width: 100px;
-    height: 100px;
-    .CircularProgressbar-path {
+    left: 37.5%;
+    width: 85px;
+    height: 85px;
+    
+    .CircularProgressbar {
+        width: 100%;
+        vertical-align: middle;
+        background-color: rgb(82, 182, 255);
+        border-radius: 50%;
+        padding: 5px;
+    }
+
+    .CircularProgressbar .CircularProgressbar-path {
         stroke: white;
+        stroke-linecap: round;
+        -webkit-transition: stroke-dashoffset 0.5s ease 0s;
+        transition: stroke-dashoffset 0.5s ease 0s;
     }
-    .CircularProgressbar-trail {
+
+    .CircularProgressbar .CircularProgressbar-trail {
         stroke: rgb(82, 182, 255);
+        stroke-linecap: round;
+        padding: 5px;
     }
-    .CircularProgressbar-text {
+
+    .CircularProgressbar .CircularProgressbar-text {
         fill: white;
-        fontSize: 18px;
+        font-size: 20px;
+        dominant-baseline: middle;
         font-family: 'Open Sans', sans-serif;
-        font-weight: bolder;
+        text-anchor: middle;
     }
-    .CircularProgressbar-background {
+
+    .CircularProgressbar .CircularProgressbar-background {
         fill: rgb(82, 182, 255);
+    }
+
+    .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+        fill: #3e98c7;
+    }
+
+    .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+        fill: #fff;
+    }
+
+    .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+        stroke: #fff;
+    }
+
+    .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+        stroke: transparent;
     }
 `;

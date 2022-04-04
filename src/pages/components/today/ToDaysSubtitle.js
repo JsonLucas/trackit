@@ -13,7 +13,9 @@ function ToDaysSubtitle() {
             return `${item}`;
         }
     });
-    date += `, ${dayJs().date()}/`;
+    new Date().getDate() < 10 
+    ? date += `, 0${new Date().getDate()}/`
+    : date += `, ${new Date().getDate()}/`;
     date += halfDate.months.find((item, index) => {
         if (index === dayJs().month()) {
             return `${item}`;

@@ -1,9 +1,9 @@
+import { Inputs, SingleInput, ButtonForm, SignLogin } from '../../../assets/styled-components/home/StyledHome';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Inputs, SingleInput, ButtonForm, SignLogin } from '../../../assets/styled-components/home/StyledHome';
+import { ThreeDots } from 'react-loader-spinner';
 import SignIn from '../../../utils/api-requests/Sign-in';
 import UserContext from '../../../utils/use-contexts/UserContext';
-import { ThreeDots } from 'react-loader-spinner';
 function FormLogin(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

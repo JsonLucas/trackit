@@ -1,5 +1,4 @@
 import AxiosConfig from './AxiosConfig';
-import UserContext from '../use-contexts/UserContext';
 const SignIn = async (body) => {
     let res = {};
     const request = AxiosConfig.post('/auth/login', body);
