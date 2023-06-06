@@ -21,35 +21,10 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-.cxx/
-*.keystore
-!debug.keystore
-
-# node.js
-#
-node_modules/
-*.log
-api/
+.xcode.env.local
 
 # Bundle artifacts
 *.jsbundle
 
 # CocoaPods
-/ios/Pods/
-
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-# Expo
-.expo/
-web-build/
-dist/
+/Pods/
