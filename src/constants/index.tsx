@@ -1,1 +1,1 @@
-export const weekDays = ['d', 's', 't', 'q', 'q', 's', 's'];
+export const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];

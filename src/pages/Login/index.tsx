@@ -1,5 +1,5 @@
-import { Flex, Image, VStack, Input, Button, Text, Box } from 'native-base';
-import { useForm, useController } from 'react-hook-form';
+import { Flex, Image, VStack, Button, Text, Box } from 'native-base';
+import { useForm } from 'react-hook-form';
 import { Field } from '../../components/Field';
 import HomeIcon from '../../../assets/home-icon.svg';
 

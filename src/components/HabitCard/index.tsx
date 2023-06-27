@@ -1,29 +1,34 @@
 import { Flex, VStack, Text, Box } from "native-base";
-import { IoIosTrash } from "react-icons/io";
-import { weekDays } from "../../constants";
+import { IoIosCheckmark } from 'react-icons/io';
 
-export function HabitCard() {
+interface Props {
+	spacing?: number;
+}
+
+export function HabitCard({ spacing }: Props) {
 	return (
-		<VStack p="10px">
-			<Flex direction="row" alignItems="center" justifyContent="space-between">
-				<Text fontSize='19.98px' color='#666666' fontWeight='400'>Nome do hábito aqui</Text>
-				<IoIosTrash size={22} color="black" />
+		<Flex
+			direction="row"
+			alignItems="center"
+			fontFamily="Lexend Deca"
+			justifyContent="space-between"
+			p="10px"
+			ml='2.5vw'
+			mb={spacing ? `${spacing * (spacing/2)}px` : undefined}
+			w='95vw'
+		>
+			<VStack space="1">
+				<Text fontSize="19.98px" fontWeight="400">
+					Título do hábito
+				</Text>
+				<Box>
+					<Text>Título do hábito</Text>
+					<Text>Título do hábito</Text>
+				</Box>
+			</VStack>
+			<Flex h='69px' w='69px' bgColor='#E7E7E7' borderColor='#EBEBEB' borderWidth='1px' justifyContent='center' alignItems='center' borderRadius='10px'>
+				<IoIosCheckmark size={60} color='white' />
 			</Flex>
-			<Flex direction="row" justifyContent='space-around'>
-				{weekDays.map((item, index) => (
-					<Box
-						key={`${index}-${item}`}
-						p="10px"
-						borderRadius="5px"
-						borderWidth="1px"
-						borderColor="#D4D4D4"
-						color="#D4D4D4"
-						fontSize='19px'
-					>
-						{item}
-					</Box>
-				))}
-			</Flex>
-		</VStack>
+		</Flex>
 	);
 }
