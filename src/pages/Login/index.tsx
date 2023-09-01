@@ -1,4 +1,4 @@
-import { Flex, Image, VStack, Button, Text, Box } from 'native-base';
+import { Flex, Image, VStack, Button, Text, Box, Toast } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { Field } from '../../components/Field';
 import HomeIcon from '../../../assets/home-icon.svg';
@@ -6,6 +6,14 @@ import HomeIcon from '../../../assets/home-icon.svg';
 export function Login({ navigation }: any) {
 	const { control, handleSubmit } = useForm();
 	const login = async (data: any) => {
+		try{}catch(e: any) {
+			console.log(e);
+			Toast.show({
+				title: 'Erro ao fazer login',
+				description: e.message,
+				duration: 3000
+			});
+		}
 		console.log(data);
 		navigation.navigate('Home');
 	}
