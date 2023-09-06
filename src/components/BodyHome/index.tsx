@@ -25,7 +25,6 @@ export function BodyHome() {
 					<Text color='#52B6FF' fontSize='15.98px' fontWeight='400' p='10px'>Cancelar</Text>
 				</Flex>
 			</VStack>
-			<Text fontSize='17.98px' fontWeight='400' color='#666666'>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Text>
 			<ScrollView size='lg' w='100%'>
 				<HabitHomeCard />
 			</ScrollView>
